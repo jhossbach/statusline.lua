@@ -151,6 +151,9 @@ function M.activeLine()
 	-- Scrollbar
 	-- statusline = statusline.."%#Status_Line#"..call('Scrollbar')..space
 
+	-- Current LSP name
+	statusline = statusline .. lsp.lsp_client_name()
+
 	-- Component: Modified, Read-Only, Filesize, Row/Col
 	statusline = statusline .. '%#Status_Line#' .. bufmod.is_buffer_modified()
 	statusline = statusline .. editable.editable() .. filesize.get_file_size() .. [[ʟ %l/%L c %c]] .. space

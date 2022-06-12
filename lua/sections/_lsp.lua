@@ -67,6 +67,23 @@ function M.lsp_progress()
 	return format_messages(messages)
 end
 
+-- REQUIRES LSP
+function M.lsp_client_name()
+	local clients = vim.lsp.get_active_clients({ buffer = bufnr })
+	if not clients then
+		return ''
+	end
+	names = ""
+	-- Avoid leading comma
+	if #clients == 1 then
+		return clients[1].name .. space
+	end
+	for _, v in pairs(clients) do
+		names = names .. ', ' .. v.name
+	end
+	return names .. space
+end
+
 -- REQUIRES NVIM LIGHTBULB
 function M.lightbulb()
 	local has_lightbulb, lightbulb = pcall(require, 'nvim-lightbulb')
