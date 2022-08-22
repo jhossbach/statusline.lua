@@ -73,13 +73,14 @@ function M.lsp_client_name()
 	if not clients then
 		return ''
 	end
-	names = ""
 	-- Avoid leading comma
-	if #clients == 1 then
-		return clients[1].name .. space
-	end
-	for _, v in pairs(clients) do
-		names = names .. ', ' .. v.name
+	local names = ""
+	for num, client in ipairs(clients) do
+	    if num == 1 then
+	      names = client.name
+	    else
+	      names = client.name ..  ', ' .. names
+	    end
 	end
 	return names .. space
 end
